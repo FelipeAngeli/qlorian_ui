@@ -5,9 +5,19 @@ import 'package:qlorian/app/components/header_widget.dart';
 
 import 'login_page.dart';
 
-class CreateLoginPage extends StatelessWidget {
-  CreateLoginPage({Key? key}) : super(key: key);
+//https://www.kindacode.com/article/flutter-show-hide-password-in-textfield-textformfield/
+
+class CreateLoginPage extends StatefulWidget {
+  const CreateLoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<CreateLoginPage> createState() => _CreateLoginPageState();
+}
+
+class _CreateLoginPageState extends State<CreateLoginPage> {
   final _formKey = GlobalKey<FormState>();
+
+  bool _isObscure = false;
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +59,7 @@ class CreateLoginPage extends StatelessWidget {
                       custemName: "E-mail",
                       custemIcon: "assets/icons/email.png",
                       customLabel: "email@com.br",
+                      teclado: TextInputType.emailAddress,
                       validator: (value) {
                         if (!value!.contains("@")) {
                           return "Esse e-mail está incorreto";
@@ -59,10 +70,18 @@ class CreateLoginPage extends StatelessWidget {
                       custemName: "Password",
                       custemIcon: "assets/icons/password.png",
                       customLabel: "Password",
+                      obscuretext: _isObscure,
                       suffixIcon: IconButton(
-                          //https://www.kindacode.com/article/flutter-show-hide-password-in-textfield-textformfield/
-                          onPressed: () {},
-                          icon: Image.asset("assets/icons/visibility.png")),
+                        icon: Icon(_isObscure
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                        onPressed: () {
+                          setState(() {
+                            _isObscure = !_isObscure;
+                          });
+                        },
+                        //icon: Image.asset("assets/icons/visibility.png"),
+                      ),
                       validator: (value) {
                         if (value!.length < 6) {
                           return "A senha deve ter pelo menos 6 caracteres";
@@ -73,9 +92,18 @@ class CreateLoginPage extends StatelessWidget {
                       custemName: "Confirm Password",
                       custemIcon: "assets/icons/password.png",
                       customLabel: "Confirm Password",
+                      obscuretext: _isObscure,
                       suffixIcon: IconButton(
-                          onPressed: () {},
-                          icon: Image.asset("assets/icons/visibility.png")),
+                        icon: Icon(_isObscure
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                        onPressed: () {
+                          setState(() {
+                            _isObscure = !_isObscure;
+                          });
+                        },
+                        // icon: Image.asset("assets/icons/visibility.png"),
+                      ),
                       validator: (value) {
                         if (value!.length < 6) {
                           return "A senha deve ter pelo menos 6 caracteres";

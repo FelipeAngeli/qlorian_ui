@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   dio: ^4.0.4
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -73,6 +74,9 @@ flutter:
     - assets/icons/visibility.png
   #   - images/a_dot_ham.jpeg
     - assets/image/avatar.jpg
+
+    - assets/data.json
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

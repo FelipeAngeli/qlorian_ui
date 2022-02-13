@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:qlorian/core/app_colors.dart';
 
 class CustomDropdomnList extends StatefulWidget {
@@ -19,7 +20,7 @@ class _CustomDropdomnListState extends State<CustomDropdomnList> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            "Pais",
+            "Country",
             style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w500,

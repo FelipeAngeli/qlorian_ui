@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:qlorian/core/app_colors.dart';
 
 class CustomField extends StatelessWidget {
   final String custemName;
   final String? custemIcon;
   final String? customLabel;
+  final TextInputType? teclado;
+  final List<TextInputFormatter>? mask;
 
   final Widget? suffixIcon;
 
@@ -20,6 +23,8 @@ class CustomField extends StatelessWidget {
     this.customLabel,
     this.suffixIcon,
     required this.validator,
+    this.teclado,
+    this.mask,
   }) : super(key: key);
 
   @override
@@ -42,6 +47,9 @@ class CustomField extends StatelessWidget {
           height: 10,
         ),
         TextFormField(
+          inputFormatters: mask,
+          keyboardType: teclado,
+          //     autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: validator,
           key: key,
           obscureText: obscuretext,
