@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:qlorian/app/view/login_page.dart';
 
 import 'package:qlorian/core/app_colors.dart';
 
-import 'app/view/create_login_page.dart';
+import 'app/view/sign_up_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: const CreateLoginPage(),
+      home: SignUpPage(),
     );
   }
 }

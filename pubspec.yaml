@@ -75,7 +75,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
     - assets/image/avatar.jpg
 
-    - assets/data.json
+  
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:qlorian/app/controller/homer_controller.dart';
+import 'package:qlorian/app/model/coutry_model.dart';
 
 import 'package:qlorian/core/app_colors.dart';
+
+import 'country_selector.dart';
 
 class CustomDropdomnList extends StatefulWidget {
   const CustomDropdomnList({Key? key}) : super(key: key);
@@ -10,8 +14,15 @@ class CustomDropdomnList extends StatefulWidget {
 }
 
 class _CustomDropdomnListState extends State<CustomDropdomnList> {
-  final List<String> genders = ['Brasil', 'Argentina'];
-  String? selectedGender; //CUIDAR
+  final controller = HomerController();
+
+  @override
+  void initState() {
+    setState(() {
+      controller.setInitial(controller.countryList[0]);
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,20 +51,18 @@ class _CustomDropdomnListState extends State<CustomDropdomnList> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               child: DropdownButton(
-                items: [
-                  DropdownMenuItem(
-                    child: Text(genders[0]),
-                    value: genders[0],
-                  ),
-                  DropdownMenuItem(
-                    child: Text(genders[1]),
-                    value: genders[1],
-                  ),
-                ],
-                onChanged: (value) => setState(() {
-                  selectedGender = value as String?;
-                }),
-                value: selectedGender,
+                value: controller.initial,
+                items: controller.countryList.map((country) {
+                  return DropdownMenuItem(
+                    value: country,
+                    child: CountrySelector(country: country),
+                  );
+                }).toList(),
+                onChanged: (Country? value) {
+                  setState(() {
+                    controller.setInitial(value!);
+                  });
+                },
                 hint: const Text(
                   'Selecione seu Pais',
                   style: TextStyle(

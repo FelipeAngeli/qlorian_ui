@@ -8,12 +8,11 @@ class CustomField extends StatelessWidget {
   final String? customLabel;
   final TextInputType? teclado;
   final List<TextInputFormatter>? mask;
-
   final Widget? suffixIcon;
-
   final bool obscuretext;
   final TextEditingController? controller;
   final String? Function(String? value) validator;
+  final String? initialValue;
   const CustomField({
     Key? key,
     required this.custemName,
@@ -25,6 +24,7 @@ class CustomField extends StatelessWidget {
     required this.validator,
     this.teclado,
     this.mask,
+    this.initialValue,
   }) : super(key: key);
 
   @override
@@ -47,6 +47,8 @@ class CustomField extends StatelessWidget {
           height: 10,
         ),
         TextFormField(
+          initialValue: initialValue,
+          controller: controller,
           inputFormatters: mask,
           keyboardType: teclado,
           validator: validator,

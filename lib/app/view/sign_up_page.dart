@@ -1,24 +1,26 @@
+//https://www.kindacode.com/article/flutter-show-hide-password-in-textfield-textformfield/
 import 'package:flutter/material.dart';
 import 'package:qlorian/app/components/button_custom.dart';
 import 'package:qlorian/app/components/custom_field.dart';
 import 'package:qlorian/app/components/header_widget.dart';
+import 'package:qlorian/app/controller/text_editing_controller.dart';
 
-import 'login_page.dart';
+import 'confirm_page.dart';
 
-//https://www.kindacode.com/article/flutter-show-hide-password-in-textfield-textformfield/
-
-class CreateLoginPage extends StatefulWidget {
-  const CreateLoginPage({Key? key}) : super(key: key);
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
-  State<CreateLoginPage> createState() => _CreateLoginPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _CreateLoginPageState extends State<CreateLoginPage> {
+class _SignUpPageState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
-
   bool _isObscure = false;
   bool _isObscureConrim = false;
+  final controller = TextControllers();
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +35,6 @@ class _CreateLoginPageState extends State<CreateLoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              // CUIDAR CONST
-
               const HeaderWidget(
                 icone: "assets/icons/hand.png",
                 titulo: " Hello,",
@@ -50,6 +50,7 @@ class _CreateLoginPageState extends State<CreateLoginPage> {
                       custemName: "Full Name",
                       custemIcon: "assets/icons/person.png",
                       customLabel: "Full Name",
+                      controller: controller.fullNameController,
                       validator: (value) {
                         if (value!.length < 5) {
                           return "Esse nome é invalido";
@@ -60,6 +61,7 @@ class _CreateLoginPageState extends State<CreateLoginPage> {
                       custemName: "E-mail",
                       custemIcon: "assets/icons/email.png",
                       customLabel: "email@com.br",
+                      controller: controller.emailController,
                       teclado: TextInputType.emailAddress,
                       validator: (value) {
                         if (!value!.contains("@")) {
@@ -71,6 +73,7 @@ class _CreateLoginPageState extends State<CreateLoginPage> {
                       custemName: "Password",
                       custemIcon: "assets/icons/password.png",
                       customLabel: "Password",
+                      controller: controller.passwordController,
                       obscuretext: _isObscure,
                       suffixIcon: IconButton(
                         icon: Icon(_isObscure
@@ -92,6 +95,7 @@ class _CreateLoginPageState extends State<CreateLoginPage> {
                       custemName: "Confirm Password",
                       custemIcon: "assets/icons/password.png",
                       customLabel: "Confirm Password",
+                      controller: controller.confirmPasswordController,
                       obscuretext: _isObscureConrim,
                       suffixIcon: IconButton(
                         icon: Icon(_isObscureConrim
@@ -117,8 +121,12 @@ class _CreateLoginPageState extends State<CreateLoginPage> {
               ),
               ButtonCustom(onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoginPage()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ConfirmPage(
+                                fullName: controller.fullName,
+                              )));
                   _doLogin();
                 }
               }),

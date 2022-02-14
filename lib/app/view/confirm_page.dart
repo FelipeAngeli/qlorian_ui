@@ -5,11 +5,14 @@ import 'package:qlorian/app/components/custom_avatar.dart';
 import 'package:qlorian/app/components/custom_dropdown_list.dart';
 import 'package:qlorian/app/components/custom_field.dart';
 import 'package:qlorian/app/components/header_widget.dart';
-import 'package:qlorian/app/view/create_login_page.dart';
+import 'package:qlorian/app/controller/text_editing_controller.dart';
+import 'package:qlorian/app/view/sign_up_page.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({Key? key}) : super(key: key);
+class ConfirmPage extends StatelessWidget {
+  final String fullName;
+  ConfirmPage({Key? key, required this.fullName}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
+  final controller = TextControllers();
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +38,11 @@ class LoginPage extends StatelessWidget {
                 child: Column(
                   children: [
                     CustomField(
+                      initialValue: fullName,
                       custemName: "Display Name",
                       custemIcon: "assets/icons/person.png",
                       customLabel: "Full Name",
+                      // controller: controller.fullNameController,
                       validator: (value) {
                         if (value!.length < 5) {
                           return "Esse nome é invalido";
@@ -51,7 +56,8 @@ class LoginPage extends StatelessWidget {
                     CustomField(
                         custemName: "CPF",
                         custemIcon: "assets/icons/cpf.png",
-                        customLabel: "111.222.333-44",
+                        customLabel: "CPF",
+                        controller: controller.cpfController,
                         teclado: TextInputType.number,
                         validator: (value) {
                           if (!RegExp(r"/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/")
@@ -65,7 +71,8 @@ class LoginPage extends StatelessWidget {
                     CustomField(
                       custemName: "RG",
                       custemIcon: "assets/icons/rg.png",
-                      customLabel: "1234567890",
+                      customLabel: "RG",
+                      controller: controller.rgController,
                       teclado: TextInputType.number,
                       validator: (value) {
                         if (value!.length < 6) {
@@ -77,7 +84,8 @@ class LoginPage extends StatelessWidget {
                     CustomField(
                       custemName: "Phone",
                       custemIcon: "assets/icons/cel.png",
-                      customLabel: "11 12345.6789",
+                      customLabel: "Phone",
+                      controller: controller.phoneController,
                       teclado: TextInputType.number,
                       validator: (value) {
                         if (value!.length < 10) {
@@ -94,10 +102,8 @@ class LoginPage extends StatelessWidget {
               ),
               ButtonCustom(onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const CreateLoginPage()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SignUpPage()));
                   _doLogin();
                 }
               }),
