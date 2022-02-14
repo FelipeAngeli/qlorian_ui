@@ -3,7 +3,6 @@ import 'package:qlorian/app/view/login_page.dart';
 
 import 'package:qlorian/core/app_colors.dart';
 
-import 'app/components/custom_dropdown_list.dart';
 import 'app/view/create_login_page.dart';
 
 void main() {
@@ -24,7 +23,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: CreateLoginPage(),
+      home: const CreateLoginPage(),
     );
   }
 }

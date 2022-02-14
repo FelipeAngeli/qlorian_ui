@@ -30,8 +30,3 @@ class ButtonCustom extends StatelessWidget {
     );
   }
 }
-
-
-//  RoundedRectangleBorder(
-//             borderRadius: BorderRadius.circular(30),
-//           ),

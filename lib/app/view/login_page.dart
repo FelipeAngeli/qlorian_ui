@@ -5,6 +5,7 @@ import 'package:qlorian/app/components/custom_avatar.dart';
 import 'package:qlorian/app/components/custom_dropdown_list.dart';
 import 'package:qlorian/app/components/custom_field.dart';
 import 'package:qlorian/app/components/header_widget.dart';
+import 'package:qlorian/app/view/create_login_page.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -14,7 +15,6 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // actionsIconTheme: IconThemeData(color: Appcolors.colorFontes),
         backgroundColor: Colors.transparent,
         elevation: 0.0,
       ),
@@ -24,15 +24,13 @@ class LoginPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              // CUIDAR CONST
-
               const HeaderWidget(
                 icone: "assets/icons/sunglasses.png",
                 titulo: " Setting up your,",
                 subTitulo: "profile",
                 preLoginTxt: "Add your profile photo",
               ),
-              CustomAvatar(),
+              const CustomAvatar(),
               Form(
                 child: Column(
                   children: [
@@ -96,11 +94,16 @@ class LoginPage extends StatelessWidget {
               ),
               ButtonCustom(onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoginPage()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const CreateLoginPage()));
                   _doLogin();
                 }
               }),
+              const SizedBox(
+                height: 30,
+              ),
             ],
           ),
         ),

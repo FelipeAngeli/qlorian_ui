@@ -18,6 +18,7 @@ class _CreateLoginPageState extends State<CreateLoginPage> {
   final _formKey = GlobalKey<FormState>();
 
   bool _isObscure = false;
+  bool _isObscureConrim = false;
 
   @override
   Widget build(BuildContext context) {
@@ -73,14 +74,13 @@ class _CreateLoginPageState extends State<CreateLoginPage> {
                       obscuretext: _isObscure,
                       suffixIcon: IconButton(
                         icon: Icon(_isObscure
-                            ? Icons.visibility
-                            : Icons.visibility_off),
+                            ? Icons.visibility_off
+                            : Icons.visibility),
                         onPressed: () {
                           setState(() {
                             _isObscure = !_isObscure;
                           });
                         },
-                        //icon: Image.asset("assets/icons/visibility.png"),
                       ),
                       validator: (value) {
                         if (value!.length < 6) {
@@ -92,17 +92,16 @@ class _CreateLoginPageState extends State<CreateLoginPage> {
                       custemName: "Confirm Password",
                       custemIcon: "assets/icons/password.png",
                       customLabel: "Confirm Password",
-                      obscuretext: _isObscure,
+                      obscuretext: _isObscureConrim,
                       suffixIcon: IconButton(
-                        icon: Icon(_isObscure
-                            ? Icons.visibility
-                            : Icons.visibility_off),
+                        icon: Icon(_isObscureConrim
+                            ? Icons.visibility_off
+                            : Icons.visibility),
                         onPressed: () {
                           setState(() {
-                            _isObscure = !_isObscure;
+                            _isObscureConrim = !_isObscureConrim;
                           });
                         },
-                        // icon: Image.asset("assets/icons/visibility.png"),
                       ),
                       validator: (value) {
                         if (value!.length < 6) {

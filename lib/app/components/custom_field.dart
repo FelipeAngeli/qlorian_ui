@@ -49,7 +49,6 @@ class CustomField extends StatelessWidget {
         TextFormField(
           inputFormatters: mask,
           keyboardType: teclado,
-          //     autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: validator,
           key: key,
           obscureText: obscuretext,
