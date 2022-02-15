@@ -6,12 +6,15 @@ import 'package:qlorian/app/components/custom_dropdown_list.dart';
 import 'package:qlorian/app/components/custom_field.dart';
 import 'package:qlorian/app/components/header_widget.dart';
 import 'package:qlorian/app/controller/text_editing_controller.dart';
+import 'package:qlorian/app/controller/validator_cpf_controller.dart';
+import 'package:qlorian/app/model/cpf_model.dart';
 import 'package:qlorian/app/view/sign_up_page.dart';
 
 class ConfirmPage extends StatelessWidget {
   final String fullName;
   ConfirmPage({Key? key, required this.fullName}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
+  final cpfController = ValidatorCpfController(CpfModel());
   final controller = TextControllers();
 
   @override
@@ -57,7 +60,7 @@ class ConfirmPage extends StatelessWidget {
                         custemName: "CPF",
                         custemIcon: "assets/icons/cpf.png",
                         customLabel: "CPF",
-                        controller: controller.cpfController,
+                        controller: cpfController.textCpfController,
                         teclado: TextInputType.number,
                         validator: (value) {
                           if (!RegExp(r"/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/")
@@ -109,6 +112,16 @@ class ConfirmPage extends StatelessWidget {
               }),
               const SizedBox(
                 height: 30,
+              ),
+              Visibility(
+                visible: cpfController.valid.isNotEmpty,
+                child: Text(
+                  cpfController.valid,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 30,
+                  ),
+                ),
               ),
             ],
           ),
